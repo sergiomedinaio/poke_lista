@@ -15,6 +15,13 @@ const consultarPokemon = async (nombrePokemon) => {
             return {is_hidden, slot};
         })
     
+    const hiddenAbilities = modifAbilitiesList
+        .filter((abilityItem) => {
+            return abilityItem.is_hidden === true;
+        })
+
+    console.log(hiddenAbilities);
+    
     } else {
     alert("HTTP-Error: " + response.status);
     }
