@@ -9,11 +9,11 @@ const consultarPokemon = async (nombrePokemon) => {
     const abilitiesList = pokemon.abilities;
 
     const modifAbilitiesList = abilitiesList
-        .map((ability) => {
-            return ability;
+        .map((abilityItem) => {
+            const {ability, is_hidden, slot} = abilityItem;
+            console.log(ability, is_hidden, slot);
+            return {is_hidden, slot};
         })
-
-    console.log(modifAbilitiesList)
     
     } else {
     alert("HTTP-Error: " + response.status);
