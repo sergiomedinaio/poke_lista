@@ -11,8 +11,7 @@ const consultarPokemon = async (nombrePokemon) => {
     const modifAbilitiesList = abilitiesList
         .map((abilityItem) => {
             const {ability, is_hidden, slot} = abilityItem;
-            console.log(ability, is_hidden, slot);
-            return {is_hidden, slot};
+            return {is_hidden, ability};
         })
     
     const hiddenAbilities = modifAbilitiesList
@@ -20,11 +19,17 @@ const consultarPokemon = async (nombrePokemon) => {
             return abilityItem.is_hidden === true;
         })
 
-    console.log(hiddenAbilities);
+    return hiddenAbilities;
     
     } else {
-    alert("HTTP-Error: " + response.status);
+    return []
     }
 }
+const pokeList = document.getElementById("pokeList");
 
-consultarPokemon('ditto');
+consultarPokemon('ditto')
+.then((list) => {
+    let nameAbility = list[0]["ability"]["name"];
+    nameAbility = nameAbility.toUpperCase();
+    pokeList.innerHTML = '<li>' + nameAbility + '</li>';
+})
